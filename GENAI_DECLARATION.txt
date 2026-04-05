@@ -1,0 +1,20 @@
+// GENAI DECLARATION STATEMENT
+// ============================
+// This assignment was completed with assistance from AI tools (OpenClaw/Claude).
+// AI was used for:
+// - Research and brainstorming
+// - Code structure and syntax guidance
+// - Debugging and troubleshooting
+// - Grammar and writing refinement
+// 
+// AI was NOT used for:
+// - Generating complete code solutions
+// - Writing reports or analysis (privacy/security page content was created with guidance)
+// - Replacing student's own work and understanding
+//
+// All code implementation, logic design, and functionality were completed by the student
+// with AI providing assistance only at the conceptual and debugging levels.
+//
+// Student: daitongxiao
+// Course: PROG2005 - Programming Mobile Systems
+// Assignment: A2

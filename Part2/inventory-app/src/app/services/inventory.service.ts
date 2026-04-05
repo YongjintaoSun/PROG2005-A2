@@ -104,4 +104,8 @@ export class InventoryService {
   getPopularItems(): InventoryItem[] {
     return this.inventorySignal().filter(item => item.popularItem);
   }
+
+  getAllItems(): InventoryItem[] {
+    return this.inventorySignal();
+  }
 }
