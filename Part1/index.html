@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Inventory Management System</h1>
+            <p class="subtitle">PROG2005 A2 - Part 1</p>
+        </header>
+        
+        <nav class="toolbar">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 Search by item name...">
+            </div>
+            <div class="action-buttons">
+                <button class="btn-primary" id="add-item-btn" onclick="showAddForm()">+ Add Item</button>
+                <button class="btn-secondary" onclick="displayAllItems()">📋 All Items</button>
+                <button class="btn-secondary" onclick="displayPopularItems()">⭐ Popular Items</button>
+            </div>
+        </nav>
+        
+        <main>
+            <div id="items-container" class="items-grid">
+                <!-- Items will be rendered here -->
+            </div>
+        </main>
+        
+        <footer>
+            <p>Total Items: <span id="total-count">0</span> | Popular Items: <span id="popular-count">0</span></p>
+        </footer>
+    </div>
+    
+    <!-- Add/Edit Form Modal -->
+    <div id="add-form" class="form-modal">
+        <div class="form-content">
+            <div class="form-header">
+                <h2 id="form-title">Add New Item</h2>
+                <button class="close-btn" id="close-form-btn">&times;</button>
+            </div>
+            <form id="item-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name *</label>
+                    <input type="text" id="item-name" required placeholder="Enter item name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Tools">Tools</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" min="0" required placeholder="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price ($) *</label>
+                        <input type="number" id="price" min="0" step="0.01" required placeholder="0.00">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="supplier-name">Supplier Name</label>
+                    <input type="text" id="supplier-name" placeholder="Enter supplier name">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="popular">
+                        <span>⭐ Mark as Popular Item</span>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" rows="3" placeholder="Add any notes..."></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-primary" id="save-item-btn">Save Item</button>
+                    <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="inventory.js"></script>
+    <script>
+        // Update footer counts
+        document.addEventListener('DOMContentLoaded', function() {
+            const updateCounts = () => {
+                // This will be updated after inventory is loaded
+            };
+        });
+    </script>
+</body>
+</html>
