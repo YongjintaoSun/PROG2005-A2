@@ -1,0 +1,44 @@
+PROG2005 A2 - Part 3: Generative AI Report
+
+Student Name: YongjintaoSun
+Student ID: 24832902
+Course: PROG2005 Programming Mobile Systems
+Assessment: A2 - Part 3 (GenAI Report)
+
+---
+
+Declaration Statement:
+
+I acknowledge that I have used GenAI tools to complete this assessment. I used Claude (Anthropic) to assist with code structure planning, debugging TypeScript and Angular issues, and refining CSS styling within the parameters outlined in the Assessment Brief and by the Unit Assessor.
+
+---
+
+Use of Generative AI in This Assessment
+
+Throughout the development of this PROG2005 A2 assessment, I utilized Claude, an AI assistant developed by Anthropic, as a supplementary tool to enhance my productivity and learning experience. My use of GenAI was purpose-specific and aligned with the Level 2 guidelines provided in the assessment brief.
+
+Research and Problem Formulation
+
+At the initial stages of the project, I used GenAI to help me understand the structure and requirements of building a TypeScript-based inventory management system and its Angular counterpart. The AI assisted me in breaking down the complex requirements into manageable components, such as identifying the necessary data structures, form validation approaches, and responsive design considerations. This helped me establish a clear roadmap for implementation.
+
+Code Structure and Architecture Planning
+
+GenAI was instrumental in helping me design the architecture of both Part 1 (TypeScript) and Part 2 (Angular) applications. For Part 1, the AI helped me understand how to properly structure TypeScript classes with type definitions, interfaces, and validation logic. For Part 2, it assisted in planning the Angular component hierarchy, service architecture using RxJS, and routing configuration. This guidance was particularly valuable in ensuring that my code followed best practices for modularity and maintainability.
+
+Debugging and Troubleshooting
+
+During development, I encountered several technical challenges, particularly around Angular Reactive Forms validation and TypeScript strict typing. GenAI helped me debug issues related to form control validation, type mismatches, and RxJS observable patterns. For example, when implementing the search functionality with real-time filtering, the AI helped me understand how to properly chain RxJS operators and handle form control value changes.
+
+CSS Styling and Responsive Design
+
+I also used GenAI to assist with CSS styling and responsive design implementation. The AI provided suggestions for modern CSS techniques using CSS Grid and Flexbox, helped me create consistent styling across components, and ensured that the application was fully responsive for both mobile and desktop views. This included guidance on media queries, CSS variables for theming, and accessibility considerations.
+
+Reflection on GenAI Impact
+
+The use of GenAI significantly accelerated my development process by providing immediate access to best practices and solutions to common problems. However, it is important to note that I maintained full understanding and control over the codebase. Every line of code was reviewed, understood, and adapted to fit the specific requirements of this assessment. The AI served as a knowledgeable assistant rather than a replacement for my own learning and problem-solving efforts.
+
+Through this experience, I have gained a deeper appreciation for how GenAI can be leveraged as a learning tool while maintaining academic integrity. The key is to use AI as a supplement to one's own knowledge, ensuring that the final work reflects personal understanding and effort. I am now better equipped to troubleshoot similar issues independently and have improved my understanding of TypeScript, Angular, and modern web development practices.
+
+---
+
+End of Report
