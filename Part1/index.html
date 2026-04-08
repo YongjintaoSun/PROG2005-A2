@@ -3,54 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management System</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>PROG2005 A2 - Part 1: TypeScript Inventory Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <author>YongjintaoSun - Student ID: 24832902</author>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📦 Inventory Management System</h1>
-            <p class="subtitle">PROG2005 A2 - Part 1</p>
-        </header>
-        
-        <nav class="toolbar">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="🔍 Search by item name...">
-            </div>
-            <div class="action-buttons">
-                <button class="btn-primary" id="add-item-btn" onclick="showAddForm()">+ Add Item</button>
-                <button class="btn-secondary" onclick="displayAllItems()">📋 All Items</button>
-                <button class="btn-secondary" onclick="displayPopularItems()">⭐ Popular Items</button>
-            </div>
-        </nav>
-        
-        <main>
-            <div id="items-container" class="items-grid">
-                <!-- Items will be rendered here -->
-            </div>
-        </main>
-        
-        <footer>
-            <p>Total Items: <span id="total-count">0</span> | Popular Items: <span id="popular-count">0</span></p>
-        </footer>
-    </div>
-    
-    <!-- Add/Edit Form Modal -->
-    <div id="add-form" class="form-modal">
-        <div class="form-content">
-            <div class="form-header">
-                <h2 id="form-title">Add New Item</h2>
-                <button class="close-btn" id="close-form-btn">&times;</button>
-            </div>
-            <form id="item-form">
-                <div class="form-group">
-                    <label for="item-name">Item Name *</label>
-                    <input type="text" id="item-name" required placeholder="Enter item name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category">
+    <!-- Header -->
+    <header class="app-header">
+        <h1>📦 Inventory Management System</h1>
+        <p class="subtitle">Harvey Norman Database - Part 1 (TypeScript)</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <button class="nav-btn active" data-section="view-all">📋 View All Items</button>
+        <button class="nav-btn" data-section="add">➕ Add Item</button>
+        <button class="nav-btn" data-section="search">🔍 Search</button>
+        <button class="nav-btn" data-section="popular">⭐ Popular Items</button>
+        <button class="nav-btn" data-section="statistics">📊 Statistics</button>
+    </nav>
+
+    <!-- Message Container -->
+    <div id="message-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- View All Items Section -->
+        <section id="view-all-section" class="content-section active">
+            <div class="section-header">
+                <h2>All Inventory Items</h2>
+                <div class="filter-controls">
+                    <label for="categoryFilter">Filter by Category:</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
                         <option value="Electronics">Electronics</option>
                         <option value="Furniture">Furniture</option>
                         <option value="Clothing">Clothing</option>
@@ -58,52 +43,184 @@
                         <option value="Miscellaneous">Miscellaneous</option>
                     </select>
                 </div>
-                
-                <div class="form-row">
+            </div>
+            <div id="items-container"></div>
+        </section>
+
+        <!-- Add Item Section -->
+        <section id="add-section" class="content-section">
+            <h2>Add New Item</h2>
+            <form id="addItemForm" class="item-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="itemId">Item ID *</label>
+                        <input type="text" id="itemId" name="itemId" required placeholder="e.g., ELC003">
+                        <small>Unique identifier for the item</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemName">Item Name *</label>
+                        <input type="text" id="itemName" name="itemName" required placeholder="e.g., iPhone 15 Pro">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Tools">Tools</option>
+                            <option value="Miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="quantity">Quantity *</label>
-                        <input type="number" id="quantity" min="0" required placeholder="0">
+                        <input type="number" id="quantity" name="quantity" required min="0" placeholder="e.g., 10">
                     </div>
-                    
                     <div class="form-group">
                         <label for="price">Price ($) *</label>
-                        <input type="number" id="price" min="0" step="0.01" required placeholder="0.00">
+                        <input type="number" id="price" name="price" required min="0" step="0.01" placeholder="e.g., 999.99">
+                    </div>
+                    <div class="form-group">
+                        <label for="supplierName">Supplier Name *</label>
+                        <input type="text" id="supplierName" name="supplierName" required placeholder="e.g., Apple Inc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="stockStatus">Stock Status *</label>
+                        <select id="stockStatus" name="stockStatus" required>
+                            <option value="">Select Status</option>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="popularItem">Popular Item *</label>
+                        <select id="popularItem" name="popularItem" required>
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="supplier-name">Supplier Name</label>
-                    <input type="text" id="supplier-name" placeholder="Enter supplier name">
-                </div>
-                
-                <div class="form-group checkbox-group">
-                    <label>
-                        <input type="checkbox" id="popular">
-                        <span>⭐ Mark as Popular Item</span>
-                    </label>
-                </div>
-                
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label for="comment">Comment</label>
-                    <textarea id="comment" rows="3" placeholder="Add any notes..."></textarea>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Optional notes about the item..."></textarea>
                 </div>
-                
                 <div class="form-actions">
-                    <button type="button" class="btn-primary" id="save-item-btn">Save Item</button>
-                    <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="button" id="addItemBtn" class="btn-primary">Add Item</button>
+                    <button type="reset" class="btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search-section" class="content-section">
+            <h2>Search Items</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search by item name..." class="search-input">
+            </div>
+            <div id="search-results"></div>
+        </section>
+
+        <!-- Popular Items Section -->
+        <section id="popular-section" class="content-section">
+            <h2>⭐ Popular Items</h2>
+            <div id="popular-items-container"></div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="statistics-section" class="content-section">
+            <h2>📊 Inventory Statistics</h2>
+            <div id="statistics-container"></div>
+        </section>
+    </main>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Item</h3>
+                <span id="closeModal" class="close-modal">&times;</span>
+            </div>
+            <form id="editItemForm" class="item-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="editItemName">Item Name *</label>
+                        <input type="text" id="editItemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategory">Category *</label>
+                        <select id="editCategory" required>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Tools">Tools</option>
+                            <option value="Miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editQuantity">Quantity *</label>
+                        <input type="number" id="editQuantity" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPrice">Price ($) *</label>
+                        <input type="number" id="editPrice" required min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="editSupplierName">Supplier Name *</label>
+                        <input type="text" id="editSupplierName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editStockStatus">Stock Status *</label>
+                        <select id="editStockStatus" required>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPopularItem">Popular Item *</label>
+                        <select id="editPopularItem" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="editComment">Comment</label>
+                    <textarea id="editComment" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="saveEditBtn" class="btn-primary">Save Changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
-    
-    <script src="inventory.js"></script>
-    <script>
-        // Update footer counts
-        document.addEventListener('DOMContentLoaded', function() {
-            const updateCounts = () => {
-                // This will be updated after inventory is loaded
-            };
-        });
-    </script>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+                <span id="closeDeleteModal" class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "<span id="deleteItemName"></span>"?</p>
+                <p class="warning">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmDeleteBtn" class="btn-danger">Delete</button>
+                <button id="cancelDeleteBtn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>PROG2005 A2 - Part 1 | TypeScript Inventory Management System | YongjintaoSun (24832902)</p>
+    </footer>
+
+    <script src="js/inventory.js"></script>
 </body>
 </html>
