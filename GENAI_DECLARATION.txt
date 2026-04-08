@@ -15,6 +15,5 @@
 // All code implementation, logic design, and functionality were completed by the student
 // with AI providing assistance only at the conceptual and debugging levels.
 //
-// Student: daitongxiao
 // Course: PROG2005 - Programming Mobile Systems
 // Assignment: A2
